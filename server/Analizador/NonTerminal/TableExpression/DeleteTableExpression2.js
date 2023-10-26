@@ -12,7 +12,7 @@ class DeleteTableExpression2 extends AbstractExpression.AbstractExpression{
         let result = TS.TS.getInstance().ObtenerSimbolo("Tabla");
         for (const iterator of result) {
             if (iterator.nombre === this.ID) {
-                iterator.valor.DeleteConCondicion(condicion["columna"],condicion["valor"]);
+                iterator.valor.DeleteConCondicion(condicion["columna"],condicion["valor"],condicion["operador"]);
             }
         }
         return ""

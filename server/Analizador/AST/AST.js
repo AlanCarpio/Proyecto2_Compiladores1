@@ -77,12 +77,15 @@ const AST = (function(){
             this.LOGICAS = 1;
             //Sentencias de Control
             this.IF = 1;
+            this.CASE = 1;
+            this.CASEAUX = 1;
             //FuncionesNativas
             this.CAST = 1;
             this.PRINT = 1;
             this.FLUJO = 1;
             //Funciones Ciclicas
             this.WHILE = 1;
+            this.FOR = 1;
         }
         Finalizar(){
             this.DOT += "}" 

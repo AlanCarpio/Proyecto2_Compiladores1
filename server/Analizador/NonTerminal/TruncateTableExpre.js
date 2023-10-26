@@ -13,6 +13,7 @@ class TruncateTableExpre extends AbstractExpression.AbstractExpression{
                 iterator.valor.TruncateTable();
             }
         }
+        return ""
     }
     AST(BLOQUE){
         let numero = AST.AST.getInstance().TRUNCATE;

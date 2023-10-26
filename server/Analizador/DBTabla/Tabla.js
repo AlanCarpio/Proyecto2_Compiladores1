@@ -26,23 +26,48 @@ class Tabla{
         this.Columnas.set(clave, []);
       }
     }
-    DeleteConCondicion(columna, valorAEliminar){
-      
+    DeleteConCondicion(columna, valorAEliminar,tag) {
+      // Verifica si la columna existe
       if (this.Columnas.has(columna)) {
         const valoresColumna = this.Columnas.get(columna);
-        
+    
+        // Encuentra los índices de todas las filas que coinciden con el valor a eliminar
         const indicesAEliminar = [];
         for (let i = 0; i < valoresColumna.length; i++) {
-          
-          if (valoresColumna[i] === valorAEliminar) {
-            
+          var condicion = null
+          switch (tag) {
+            case "=":
+              condicion = valoresColumna[i] === valorAEliminar
+              break;
+            case "!=":
+              condicion = valoresColumna[i] != valorAEliminar
+              break;
+            case "<=":
+              condicion = valoresColumna[i] <= valorAEliminar
+              break;
+            case ">=":
+              condicion = valoresColumna[i] >= valorAEliminar
+              break;
+            case "<":
+              condicion = valoresColumna[i] < valorAEliminar
+              break;
+            case ">":
+              condicion = valoresColumna[i] > valorAEliminar
+              break;
+            default:
+              break;
+          }
+          if (condicion) {
             indicesAEliminar.push(i);
           }
         }
-        
-        // Eliminar los valores coincidentes en los índices encontrados
+    
+        // Elimina las filas coincidentes en todos los arrays de columnas
         for (let j = indicesAEliminar.length - 1; j >= 0; j--) {
-          valoresColumna[indicesAEliminar[j]] = "";
+          const indice = indicesAEliminar[j];
+          for (const columnaNombre of this.Columnas.keys()) {
+            this.Columnas.get(columnaNombre).splice(indice, 1);
+          }
         }
       }
     }
